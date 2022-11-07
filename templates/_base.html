@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <header>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Astorya | {{page_title}}</title>
+        <link href="/static/style.css" rel="stylesheet" type="text/css" />
+        <script src="/static/script.js" type="text/javascript"></script>
+    </header>
+
+    <body>
+        <div class="nav">
+            <a>Astorya</a>
+            <a>About</a>
+            <a>Explore</a>
+            <a>Tell Your Story</a>
+        </div>
+
+        <section>
+            {% block title %}
+            {% endblock %}
+        </section>
+
+        <section>
+            {% block content %}
+            {% endblock %}
+        </section>
+    </body>
+
+</html>
