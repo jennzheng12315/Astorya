@@ -22,3 +22,6 @@ def explore():
 @app.route("/tell-your-story.html")
 def tell_your_story():
     return render_template('tell-your-story.html', page_title='Tell Your Story')
+
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=8080, debug=True)
