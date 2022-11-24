@@ -1,21 +1,237 @@
-body{
-    background: rgb(4,20,49);
-    background: linear-gradient(180deg, rgba(4,20,49,1) 20%, rgba(4,33,71,1) 61%, rgba(6,51,90,1) 88%, rgba(18,67,108,1) 97%);
-    color: #FAF9F6;
-    min-height: 97.9vh;
+:root {
+    --outer-spacing: 1em;
+    --off-white: #FAF9f6;
+    --light-gray-50: #E0DEDE50;
+    --peach: #ECB7AE;
+    --green: #A6C86B;
 }
 
-a {
-    color: #FAF9F6;
+/* ---------- BASE CSS ---------- */
+
+body {
+    /* background: rgb(4,20,49); */
+    background: linear-gradient(180deg, rgba(4, 20, 49, 1) 20%, rgba(4, 33, 71, 1) 61%, rgba(6, 51, 90, 1) 88%, rgba(18, 67, 108, 1) 97%);
+    color: var(--off-white);
+    min-height: 100vh;
+    margin: 0;
+}
+
+button {
+    border: none;
+}
+
+.index,
+.about,
+.explore,
+.tell-your-story {
+    color: var(--off-white);
     text-decoration: none;
     margin: 10px;
     font-size: 1.2rem;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+section {
+    font-family: 'Epilogue', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .nav {
     display: flex;
     flex-direction: row wrap;
-    padding: 10px;
+    padding: var(--outer-spacing);
     justify-content: space-between;
+}
+
+.pause {
+    margin: var(--outer-spacing);
+}
+
+.pause button {
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+    background-color: transparent;
+    border: none;
+}
+
+.fa-circle-pause {
+    color: var(--light-gray-50);
+}
+
+.top {
+    min-height: 100vh;
+}
+
+/* ---------- HOME CSS ---------- */
+
+.home-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 50px;
+}
+
+.home-text {
+    width: 50%;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+}
+
+.home-image {
+    width: 50%;
+}
+
+.home-text h1 {
+    font-size: 5rem;
+    font-size: 7vmax;
+    margin-block-start: 0rem;
+    margin-block-end: 1rem;
+}
+
+.home-text h4 {
+    font-size: 2.5rem;
+    font-size: 2vmax;
+    font-weight: 100;
+    margin-block-end: 0.5rem;
+}
+
+#writing-clipart {
+    width: 100%;
+    display: block;
+    margin-left: auto;
+}
+
+.read-todays-stories {
+    background-color: var(--peach);
+    font-weight: bold;
+    font-size: 1rem;
+    font-size: 1.5vmax;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.todays-stories-info {
+    background-color: var(--off-white);
+    color: black;
+    text-align: center;
+    padding: 10px;
+}
+
+.todays-stories-info h2 {
+    font-size: 3.5rem;
+    font-size: 3vmax;
+}
+
+.todays-stories-info p {
+    font-size: 1rem;
+    font-size: 1.5vmax;
+}
+
+.read-more-button {
+    background-color: var(--peach);
+    font-weight: bold;
+    font-size: 1rem;
+    font-size: 1.5vmax;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.tell-story-button {
+    background-color: var(--green);
+    font-weight: bold;
+    font-size: 1rem;
+    font-size: 1.5vmax;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.home-buttons {
+    text-align: center;
+}
+
+.home-buttons button {
+    margin: 10px;
+}
+
+/* ---------- STORY CSS ---------- */
+
+.story-container img {
+    position: relative;
+    margin-top: 10px;
+    width: 100%;
+    z-index: 2;
+}
+
+.story-page {
+    position: relative;
+    z-index: 1;
+    margin-top: -25px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+    background-color: var(--off-white);
+    width: 75%;
+    min-height: 500px;
+}
+
+.column {
+    float: left;
+}
+
+.story-area:after {
+    display: block;
+    clear: both;
+}
+
+.arrow {
+    width: 12.5%;
+    min-height: 500px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrow button {
+    background-color: transparent;
+    border: none;
+}
+
+.fa-chevron-left,
+.fa-chevron-right {
+    color: var(--off-white);
+}
+
+/* ---------- EXPLORE CSS ---------- */
+.explore-top {
+    margin-left: var(--outer-spacing);
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 5rem;
+}
+
+.typed {
+    color: red;
+}
+
+.filter {
+    background-color: var(--off-white);
+    color: black;
+}
+
+/* ---------- TELL YOUR STORY CSS ---------- */
+.tell-story-top {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 5rem;
+    text-align: center;
+}
+
+/* ---------- ABOUT CSS ---------- */
+.about-top {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 5rem;
+    text-align: center;
 }

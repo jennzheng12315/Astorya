@@ -1,7 +1,20 @@
 {% extends '_base.html' %}
 {% block title %}
-<p>Explore</p>
+
+<section class="explore-top">
+    <h1>Stories for <span class="typed">You</span></h1>
+</section>
+
 {% endblock %}
 
 {% block content %}
+
+<section class="filter">
+    <h2>Filter here</h2>
+</section>
+
+{% with text='test' %}
+{% include 'story.html' %}
+{% endwith %}
+
 {% endblock %}

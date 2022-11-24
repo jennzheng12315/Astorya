@@ -1,7 +1,16 @@
 {% extends '_base.html' %}
 {% block title %}
-<p>Tell Your Story</p>
+
+<section class="tell-story-top">
+    <h1>Tell Your Story</h1>
+</section>
+
 {% endblock %}
 
 {% block content %}
+
+{% with text='test' %}
+{% include 'story.html' %}
+{% endwith %}
+
 {% endblock %}

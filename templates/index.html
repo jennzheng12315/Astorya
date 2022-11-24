@@ -1,21 +1,47 @@
 {% extends '_base.html' %}
 {% block title %}
 
-<div>
-    <p>Everyone has a story</p>
-    <h1>What's Yours?</h1>
-</div>
+<section class="home-top">
+    <div class="home-text">
+        <h4>Everyone has a story</h4>
+        <h1>What's Yours?</h1>
+        <button class="read-todays-stories">
+            <i class="fa-solid fa-angles-down"></i>
+            Read Today's Stories
+        </button>
+    </div>
 
-<div>
-    Image here
-</div>
-
-<button>Read Today's Stories</button>
+    <div class="home-image">
+        <img id="writing-clipart" src="/static/assets/cropped-writing-clipart.png" alt="clipart of two people writing">
+    </div>
+</section>
 
 {% endblock %}
 
 {% block content %}
 
-<p>Stories here</p>
+<section class="todays-stories-info">
+    <h2>Today's Stories</h2>
+    <p>Read five new stories every day. <br /> Randomly picked, just for you.</p>
+</section>
+
+{% with text='test' %}
+
+{% include 'story.html' %}
+
+<div class="home-buttons">
+    <button class="read-more-button" onclick="location.href='/explore'">
+        <i class="fa-solid fa-book-open"></i>
+        Read More!
+    </button>
+    <br />
+    <button class="tell-story-button" onclick="location.href='/tell-your-story'">
+        <i class=" fa-solid fa-pencil"></i>
+        Tell Your Story!
+    </button>
+</div>
+
+
+{% endwith %}
 
 {% endblock %}
