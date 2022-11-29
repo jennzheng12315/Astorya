@@ -8,11 +8,44 @@
 
         <div class="story-area">
             <div class="column arrow left-arrow">
-                <button><i class="fa-solid fa-chevron-left fa-5x"></i></button>
+                {% if mode != 'edit' %}
+                <button onclick="onArrowClick('left')"><i class="fa-solid fa-chevron-left fa-5x"></i></button>
+                {% endif %}
             </div>
-            <div class="column story-page">stuff</div>
+            <div class="column story-page">
+                {% if mode == 'edit' %}
+                <form>
+                    <label>Title: </label>
+                    <input type="text" class="title-input">
+                    {% include 'text-editor.html' %}
+                    <p>Note: Please do not include any personal information within your submission.</p>
+                    <br>
+                    <label>Add Tags: </label>
+                    <select>
+                        <option>Tag 1</option>
+                        <option>Tag 2</option>
+                        <option>Other</option>
+                    </select>
+                    <br><br>
+                    <input type="checkbox">
+                    <label>I agree to allow Astorya to store, modify, and post my submission for
+                        its website.</label>
+                    <div class="submit-story-container">
+                        <button class="green-button submit-story-button"
+                            onclick="console.log(quill.root.innerHTML)">Submit Story</button>
+                    </div>
+                </form>
+
+                {% else %}
+
+                <p>Story here</p>
+
+                {% endif %}
+            </div>
             <div class="column arrow right-arrow">
-                <button><i class="fa-solid fa-chevron-right fa-5x"></i></button>
+                {% if mode != 'edit' %}
+                <button onclick="onArrowClick('right')"><i class="fa-solid fa-chevron-right fa-5x"></i></button>
+                {% endif %}
             </div>
         </div>
     </section>
@@ -21,7 +54,3 @@
 </body>
 
 </html>
-
-
-<!-- <p>Story template here</p>
-<p>{{text}}</p> -->

@@ -18,9 +18,21 @@ body {
 
 button {
     border: none;
+    cursor: pointer;
 }
 
-.index,
+.clear {
+    clear: both;
+}
+
+.index {
+    color: var(--off-white);
+    text-decoration: none;
+    margin: 10px;
+    font-size: 1.2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .about,
 .explore,
 .tell-your-story {
@@ -29,6 +41,10 @@ button {
     margin: 10px;
     font-size: 1.2rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 section {
@@ -102,7 +118,7 @@ section {
     margin-left: auto;
 }
 
-.read-todays-stories {
+.peach-button {
     background-color: var(--peach);
     font-weight: bold;
     font-size: 1rem;
@@ -128,16 +144,7 @@ section {
     font-size: 1.5vmax;
 }
 
-.read-more-button {
-    background-color: var(--peach);
-    font-weight: bold;
-    font-size: 1rem;
-    font-size: 1.5vmax;
-    border-radius: 20px;
-    padding: 10px;
-}
-
-.tell-story-button {
+.green-button {
     background-color: var(--green);
     font-weight: bold;
     font-size: 1rem;
@@ -154,7 +161,30 @@ section {
     margin: 10px;
 }
 
+.dots {
+    text-align: center;
+    margin: 10px;
+}
+
+.dot {
+    display: inline-block;
+    position: inherit;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    border: 5px solid var(--off-white);
+    background-color: transparent;
+}
+
+#dot0 {
+    background-color: var(--off-white);
+}
+
 /* ---------- STORY CSS ---------- */
+
+.story-container {
+    color: black;
+}
 
 .story-container img {
     position: relative;
@@ -164,6 +194,7 @@ section {
 }
 
 .story-page {
+    padding: 20px 10px 10px 10px;
     position: relative;
     z-index: 1;
     margin-top: -25px;
@@ -179,13 +210,14 @@ section {
     float: left;
 }
 
-.story-area:after {
-    display: block;
+.story-area::after {
     clear: both;
+    float: none;
+    display: block;
 }
 
 .arrow {
-    width: 12.5%;
+    width: 11%;
     min-height: 500px;
 
     display: flex;
@@ -228,10 +260,41 @@ section {
     text-align: center;
 }
 
+.tell-story-top h4 {
+    font-size: 2.5rem;
+    font-size: 2vmax;
+    font-weight: 100;
+    margin-block-end: 0.5rem;
+    color: lightgrey
+}
+
+.tell-story-top h5 {
+    font-size: 1.5rem;
+    font-size: 1.5vmax;
+    font-weight: 100;
+    margin-block-end: 0.5rem;
+}
+
 /* ---------- ABOUT CSS ---------- */
 .about-top {
     margin-top: auto;
     margin-bottom: auto;
     font-size: 5rem;
     text-align: center;
+}
+
+/* TEXT EDITOR */
+#editor {
+    height: 375px;
+    /* color: black; */
+}
+
+.title-input {
+    margin: 10px;
+    width: 75%;
+}
+
+.submit-story-container {
+    text-align: center;
+    margin: 10px;
 }

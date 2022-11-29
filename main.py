@@ -1,6 +1,10 @@
 from flask import Flask, render_template
+from store import StoryManager
 
 app = Flask(__name__)
+
+manager = StoryManager()
+init_stories = manager.init_data()
 
 @app.route("/")
 @app.route("/index")

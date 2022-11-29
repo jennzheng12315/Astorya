@@ -5,7 +5,8 @@
     <div class="home-text">
         <h4>Everyone has a story</h4>
         <h1>What's Yours?</h1>
-        <button class="read-todays-stories">
+        <button class="peach-button read-todays-stories"
+            onClick="document.getElementById('todays-stories-info').scrollIntoView();">
             <i class="fa-solid fa-angles-down"></i>
             Read Today's Stories
         </button>
@@ -20,7 +21,7 @@
 
 {% block content %}
 
-<section class="todays-stories-info">
+<section class="todays-stories-info" id="todays-stories-info">
     <h2>Today's Stories</h2>
     <p>Read five new stories every day. <br /> Randomly picked, just for you.</p>
 </section>
@@ -29,13 +30,21 @@
 
 {% include 'story.html' %}
 
-<div class="home-buttons">
-    <button class="read-more-button" onclick="location.href='/explore'">
+<div class="clear dots">
+    <span class="dot" id="dot0"></span>
+    <span class="dot" id="dot1"></span>
+    <span class="dot" id="dot2"></span>
+    <span class="dot" id="dot3"></span>
+    <span class="dot" id="dot4"></span>
+</div>
+
+<div class="clear home-buttons">
+    <button class="peach-button read-more-button" onclick="location.href='/explore'">
         <i class="fa-solid fa-book-open"></i>
         Read More!
     </button>
     <br />
-    <button class="tell-story-button" onclick="location.href='/tell-your-story'">
+    <button class="green-button tell-story-button" onclick="location.href='/tell-your-story'">
         <i class=" fa-solid fa-pencil"></i>
         Tell Your Story!
     </button>
