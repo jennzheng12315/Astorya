@@ -21,6 +21,14 @@ button {
     cursor: pointer;
 }
 
+img {
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
 .clear {
     clear: both;
 }
@@ -134,7 +142,7 @@ section {
     padding: 10px;
 }
 
-.todays-stories-info h2 {
+.todays-stories-info h3 {
     font-size: 3.5rem;
     font-size: 3vmax;
 }
@@ -206,6 +214,11 @@ section {
     min-height: 500px;
 }
 
+.story-title {
+    font-size: 2.5rem;
+    font-size: 2vmax;
+}
+
 .column {
     float: left;
 }
@@ -260,7 +273,7 @@ section {
     text-align: center;
 }
 
-.tell-story-top h4 {
+.tell-story-top h2 {
     font-size: 2.5rem;
     font-size: 2vmax;
     font-weight: 100;
@@ -283,7 +296,7 @@ section {
     text-align: center;
 }
 
-/* TEXT EDITOR */
+/* ---------- TEXT EDITOR ---------- */
 #editor {
     height: 375px;
     /* color: black; */

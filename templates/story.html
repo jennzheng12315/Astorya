@@ -8,16 +8,21 @@
 
         <div class="story-area">
             <div class="column arrow left-arrow">
-                {% if mode != 'edit' %}
-                <button onclick="onArrowClick('left')"><i class="fa-solid fa-chevron-left fa-5x"></i></button>
+                {% if page == 'index' %}
+                <button onclick="onArrowClickIndex('left')"><i class="fa-solid fa-chevron-left fa-5x"></i></button>
+                {% elif page == 'explore' %}
+                <button onclick="onArrowClickExplore('left')"><i class="fa-solid fa-chevron-left fa-5x"></i></button>
                 {% endif %}
             </div>
             <div class="column story-page">
-                {% if mode == 'edit' %}
+                {% if page == 'write' %}
                 <form>
                     <label>Title: </label>
                     <input type="text" class="title-input">
-                    {% include 'text-editor.html' %}
+                    <!-- Quill.js editor -->
+                    <div id="editor">
+                        <p><br></p>
+                    </div>
                     <p>Note: Please do not include any personal information within your submission.</p>
                     <br>
                     <label>Add Tags: </label>
@@ -31,20 +36,27 @@
                     <label>I agree to allow Astorya to store, modify, and post my submission for
                         its website.</label>
                     <div class="submit-story-container">
-                        <button class="green-button submit-story-button"
-                            onclick="console.log(quill.root.innerHTML)">Submit Story</button>
+                        <button class="green-button submit-story-button" onclick="getHTML()">Submit Story</button>
                     </div>
                 </form>
 
                 {% else %}
-
-                <p>Story here</p>
+                <section class="stories">
+                    {% for i in range(stories|length) %}
+                    <div id="random-story{{i}}">
+                        <h4 class="story-title">{{stories[i].title}}</h4>
+                        {{stories[i].content | safe}}
+                    </div>
+                    {% endfor %}
+                </section>
 
                 {% endif %}
             </div>
             <div class="column arrow right-arrow">
-                {% if mode != 'edit' %}
-                <button onclick="onArrowClick('right')"><i class="fa-solid fa-chevron-right fa-5x"></i></button>
+                {% if page == 'index' %}
+                <button onclick="onArrowClickIndex('right')"><i class="fa-solid fa-chevron-right fa-5x"></i></button>
+                {% elif page == 'explore' %}
+                <button onclick="onArrowClickExplore('right')"><i class="fa-solid fa-chevron-right fa-5x"></i></button>
                 {% endif %}
             </div>
         </div>

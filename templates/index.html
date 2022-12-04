@@ -1,9 +1,12 @@
 {% extends '_base.html' %}
+
+{% block body_attrs %} onload="onIndexLoad();" {% endblock %}
+
 {% block title %}
 
 <section class="home-top">
     <div class="home-text">
-        <h4>Everyone has a story</h4>
+        <h2>Everyone has a story</h2>
         <h1>What's Yours?</h1>
         <button class="peach-button read-todays-stories"
             onClick="document.getElementById('todays-stories-info').scrollIntoView();">
@@ -22,13 +25,13 @@
 {% block content %}
 
 <section class="todays-stories-info" id="todays-stories-info">
-    <h2>Today's Stories</h2>
+    <h3>Today's Stories</h3>
     <p>Read five new stories every day. <br /> Randomly picked, just for you.</p>
 </section>
 
-{% with text='test' %}
-
+{% with page='index', stories=stories %}
 {% include 'story.html' %}
+{% endwith %}
 
 <div class="clear dots">
     <span class="dot" id="dot0"></span>
@@ -49,8 +52,5 @@
         Tell Your Story!
     </button>
 </div>
-
-
-{% endwith %}
 
 {% endblock %}

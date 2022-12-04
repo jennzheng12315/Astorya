@@ -1,10 +1,5 @@
-class Story:
-    def __init__(self, id, content, title="Untitled", tags=[], dayToDelete=None):
-        self.id = id
-        self.content = content
-        self.title = title
-        self.tags = tags
-        self.dayToDelete = dayToDelete
+from objects import Story
+import random
 
 class StoryManager:
     def __init__(self):
@@ -13,5 +8,15 @@ class StoryManager:
     def init_data(self):
         data = []
         for i in range(10):
-            data.append(Story(i, f"<p>Story {i}</p>"))
+            s = "<p>Story" + str(i) + "</p>"
+            data.append(Story(i, s))
         return data
+    
+    def random_stories(self, stories):
+        selected = []
+        for i in range(5):
+            num = random.randint(0, len(stories)-1)
+            while num in selected:
+                num = random.randint(0, len(stories)-1)
+            selected.append(num)
+        return [stories[selected[0]], stories[selected[1]], stories[selected[2]], stories[selected[3]], stories[selected[4]]]

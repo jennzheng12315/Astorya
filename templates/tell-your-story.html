@@ -1,9 +1,12 @@
 {% extends '_base.html' %}
+
+{% block body_attrs %} onload="loadEditor();" {% endblock %}
+
 {% block title %}
 
 <section class="tell-story-top">
     <h1>Tell Your Story</h1>
-    <h4>What would you like to share?</h4>
+    <h2>What would you like to share?</h2>
     <br><br>
     <h5 id="ideas">Need some ideas? <button onclick="ideasClick()"><i class="fa-solid fa-shuffle"></i></button></h5>
 </section>
@@ -12,7 +15,7 @@
 
 {% block content %}
 
-{% with mode='edit' %}
+{% with page='write' %}
 {% include 'story.html' %}
 {% endwith %}
 

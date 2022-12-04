@@ -4,13 +4,14 @@ from store import StoryManager
 app = Flask(__name__)
 
 manager = StoryManager()
-init_stories = manager.init_data()
+stories = manager.init_data()
+random_stories = manager.random_stories(stories)
 
 @app.route("/")
 @app.route("/index")
 @app.route("/index.html")
 def root():
-    return render_template('index.html', page_title='Home')
+    return render_template('index.html', page_title='Home', stories=random_stories)
 
 @app.route("/about")
 @app.route("/about.html")
