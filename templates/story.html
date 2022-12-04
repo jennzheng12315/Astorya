@@ -40,10 +40,20 @@
                     </div>
                 </form>
 
-                {% else %}
-                <section class="stories">
+                {% elif page == 'index' %}
+                <section class="random-stories">
                     {% for i in range(stories|length) %}
                     <div id="random-story{{i}}">
+                        <h4 class="story-title">{{stories[i].title}}</h4>
+                        {{stories[i].content | safe}}
+                    </div>
+                    {% endfor %}
+                </section>
+
+                {% else %}
+                <section class="all-stories">
+                    {% for i in range(stories|length) %}
+                    <div id="story{{i}}">
                         <h4 class="story-title">{{stories[i].title}}</h4>
                         {{stories[i].content | safe}}
                     </div>

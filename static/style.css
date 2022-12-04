@@ -66,11 +66,11 @@ section {
     justify-content: space-between;
 }
 
-.pause {
+.play-pause-animations {
     margin: var(--outer-spacing);
 }
 
-.pause button {
+.play-pause-animations button {
     display: block;
     margin-left: auto;
     margin-right: 0;
@@ -78,7 +78,16 @@ section {
     border: none;
 }
 
-.fa-circle-pause {
+#play {
+    display: none;
+}
+
+#pause {
+    display: block;
+}
+
+.fa-circle-pause,
+.fa-circle-play {
     color: var(--light-gray-50);
 }
 
@@ -206,8 +215,8 @@ section {
     position: relative;
     z-index: 1;
     margin-top: -25px;
-    margin-left: auto;
-    margin-right: auto;
+    /* margin-left: auto;
+    margin-right: auto; */
     margin-bottom: 25px;
     background-color: var(--off-white);
     width: 75%;
@@ -223,6 +232,11 @@ section {
     float: left;
 }
 
+.story-area {
+    display: flex;
+    justify-content: center;
+}
+
 .story-area::after {
     clear: both;
     float: none;
@@ -230,7 +244,7 @@ section {
 }
 
 .arrow {
-    width: 11%;
+    width: 10%;
     min-height: 500px;
 
     display: flex;
@@ -263,6 +277,27 @@ section {
 .filter {
     background-color: var(--off-white);
     color: black;
+}
+
+.previews {
+    text-align: center;
+}
+
+.preview {
+    background-color: var(--off-white);
+    color: black;
+    width: 230px;
+    height: 70px;
+    margin: 10px;
+}
+
+.page-arrow {
+    background-color: transparent;
+}
+
+.page-navigation {
+    text-align: center;
+    margin: 10px;
 }
 
 /* ---------- TELL YOUR STORY CSS ---------- */

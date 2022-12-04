@@ -1,4 +1,7 @@
 {% extends '_base.html' %}
+
+{% block body_attrs %} onload="onExploreLoad({{stories|length}});" {% endblock %}
+
 {% block title %}
 
 <section class="explore-top">
@@ -13,8 +16,26 @@
     <h2>Filter here</h2>
 </section>
 
-{% with page='explore' %}
+{% with page='explore', stories=stories %}
 {% include 'story.html' %}
 {% endwith %}
+
+<div class="clear previews">
+    {% for i in range(stories|length) %}
+    <button class="preview" id="preview{{i}}" onclick="showStory({{i}})">{{stories[i].title}}</button>
+    {% endfor %}
+</div>
+
+<div class="page-navigation">
+    <button class="page-arrow" id="page-arrow-left" onclick="onClickPageArrow('left')"><i
+            class="fa-solid fa-chevron-left"></i></button>
+    <select id="page-select" onchange="onPageSelected()">
+        {% for i in range((stories|length / 10)|round|int) %}
+        <option value="{{i+1}}">Page {{i+1}}</option>
+        {% endfor %}
+    </select>
+    <button class="page-arrow" id="page-arrow-right" onclick="onClickPageArrow('right')"><i
+            class="fa-solid fa-chevron-right"></i></button>
+</div>
 
 {% endblock %}

@@ -21,7 +21,7 @@ def about():
 @app.route("/explore")
 @app.route("/explore.html")
 def explore():
-    return render_template('explore.html', page_title='Explore')
+    return render_template('explore.html', page_title='Explore', stories=stories)
 
 @app.route("/tell-your-story")
 @app.route("/tell-your-story.html")
