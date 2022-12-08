@@ -109,7 +109,7 @@ def load_all_tags():
 
     result = []
     for tag in q.fetch():
-        result.append(tag['tag'])
+        result.append(tag['name'])
     return result
 
 class StoryManager:
