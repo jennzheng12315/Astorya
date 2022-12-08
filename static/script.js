@@ -169,7 +169,25 @@ function checkPageArrows() {
 }
 
 function getHTML() {
+    document.getElementById('input-content').value = quill.root.innerHTML;
     console.log(quill.root.innerHTML);
+}
+
+function getTags() {
+    document.getElementById('input-tags').value = selected_tags;
+}
+
+function checkTitle() {
+    let el = document.getElementById('input-title');
+    if (el.value == null || el.value == "") {
+        el.value = "Untitled";
+    }
+}
+
+function handleSubmit() {
+    getHTML()
+    getTags()
+    checkTitle()
 }
 
 function addTag(tag, page) {

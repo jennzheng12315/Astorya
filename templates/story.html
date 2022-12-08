@@ -16,9 +16,11 @@
             </div>
             <div class="column story-page">
                 {% if page == 'write' %}
-                <form>
+                <form method="post" action="/submit">
+                    <input type="hidden" id="input-content" name="content" value="">
+                    <input type="hidden" id="input-tags" name="tags" value="">
                     <label>Title: </label>
-                    <input type="text" class="title-input">
+                    <input type="text" id="input-title" name="title" class="title-input">
                     <!-- Quill.js editor -->
                     <div id="editor">
                         <p><br></p>
@@ -32,18 +34,19 @@
                             <input id="tag-input" list="existing-tags" onchange="addTag(this, 'story')">
                             <datalist id="existing-tags">
                                 {% for tag in tags %}
-                                <option value="{{tag}}"">
+                                <option value="{{tag}}">
                                     {% endfor %}
                             </datalist>
                             <button onclick=" addTag(this, 'story' )">Add</button>
                         </div>
                     </section>
                     <br><br>
-                    <input type="checkbox" required>
+                    <input type="checkbox" name="agreement" required>
                     <label>I agree to allow Astorya to store, modify, and post my submission for
                         its website.</label>
                     <div class="submit-story-container">
-                        <button class="green-button submit-story-button" onclick="getHTML()">Submit Story</button>
+                        <button type="submit" class="green-button submit-story-button" onclick="handleSubmit()">Submit
+                            Story</button>
                     </div>
                 </form>
 
