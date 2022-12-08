@@ -1,17 +1,13 @@
 let randomStory = 0;
 let story = 0;
 let page = 0;
-// let animationMode;
 let totalStories;
 let quill;
 const offwhite = '#FAF9f6';
 const NavBar = ['index', 'about', 'explore', 'tell-your-story']
-const ideas = ['What made you smile/cry/angry recently?', 'What is currently on your mind?', 'What is a important moment in your life?', "What is a memory that you visit frequently?", "What should people know about you?", "What challenges have you faced in your life?", "What lessons have you learned from your experiences?"]
+const ideas = ['What made you smile/cry/angry recently?', 'What is currently on your mind?', 'What is a important moment in your life?', "What is a memory that you visit frequently?", "What should people know about you?", "What challenges have you faced in your life?", "What knowledge have you gained from your experiences?"]
 
-// window.onload = function () {
-//     console.log(localStorage.getItem("animationMode"));
-//     handlePlayPause(localStorage.getItem("animationMode"));
-// };
+let selected_tags;
 
 function onIndexLoad() {
     showRandomStory(randomStory);
@@ -30,6 +26,7 @@ function onTellStoryLoad() {
         theme: 'snow'
     });
     handlePlayPause(localStorage.getItem("animationMode"));
+    selected_tags = []
 }
 
 function onAboutLoad() {
@@ -174,3 +171,36 @@ function checkPageArrows() {
 function getHTML() {
     console.log(quill.root.innerHTML);
 }
+
+function addTag(tag, page) {
+    if (tag.value == undefined) return;
+    let tags = document.getElementById("tags");
+    let span = document.createElement("span");
+    let val = tag.value
+    span.classList.add("tag");
+    span.textContent = tag.value;
+    tag.value = "";
+
+    if (page == 'story') {
+        span.setAttribute("onclick", "this.remove(); removeTag(this.textContent, 'story')");
+    } else {
+        span.setAttribute("onclick", "this.remove(); removeTag(this.textContent, 'explore')");
+    }
+
+    if (val != "") {
+        tags.append(span);
+    }
+
+    if (page == 'story' && !selected_tags.includes(val)) {
+        selected_tags.push(val)
+    }
+}
+
+function removeTag(tag, page) {
+    if (page != 'story') return;
+    let index = selected_tags.indexOf(tag)
+    if (index > -1) {
+        selected_tags.splice(index, 1);
+    }
+}
+

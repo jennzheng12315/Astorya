@@ -220,7 +220,7 @@ section {
     margin-bottom: 25px;
     background-color: var(--off-white);
     width: 75%;
-    min-height: 500px;
+    /* min-height: 500px; */
 }
 
 .story-title {
@@ -245,7 +245,7 @@ section {
 
 .arrow {
     width: 10%;
-    min-height: 500px;
+    /* min-height: 500px; */
 
     display: flex;
     justify-content: center;
@@ -271,12 +271,18 @@ section {
 }
 
 .typed {
-    color: red;
+    color: var(--peach);
 }
 
 .filter {
     background-color: var(--off-white);
     color: black;
+    padding: 20px;
+    display: flex;
+}
+
+.filter label {
+    margin-top: 20px;
 }
 
 .previews {
@@ -323,6 +329,15 @@ section {
     margin-block-end: 0.5rem;
 }
 
+.select-tags {
+    display: flex;
+}
+
+.select-tags label {
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
 /* ---------- ABOUT CSS ---------- */
 .about-top {
     margin-top: auto;
@@ -345,4 +360,31 @@ section {
 .submit-story-container {
     text-align: center;
     margin: 10px;
+}
+
+/* ---------- TAGS ----------*/
+.tag {
+    background-color: lightgray;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px;
+    cursor: pointer
+}
+
+#line {
+    margin-top: 10px;
+}
+
+.show-tags {
+    text-align: right;
+    padding: 10px;
+}
+
+#tags {
+    overflow-wrap: anywhere;
+    line-height: 2;
+}
+
+#tag-input {
+    margin-top: 10px;
 }

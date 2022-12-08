@@ -9,7 +9,7 @@ class StoryManager:
         data = []
         for i in range(20):
             s = "<p>Story" + str(i) + "</p>"
-            data.append(Story(i, s, "title"+str(i)))
+            data.append(Story(i, s, "title"+str(i), ["tag1", "tag2", "tag3"]))
         return data
     
     def random_stories(self, stories):

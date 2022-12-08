@@ -13,7 +13,17 @@
 {% block content %}
 
 <section class="filter">
-    <h2>Filter here</h2>
+    <label>Filter: </label>
+    <div id="line">
+        <span id="tags"></span>
+        <input id="tag-input" list="existing-tags" onchange="addTag(this, 'explore')">
+        <datalist id="existing-tags">
+            {% for tag in tags %}
+            <option value="{{tag}}">
+                {% endfor %}
+        </datalist>
+        <button onclick=" addTag(this, 'explore')">Add</button>
+    </div>
 </section>
 
 {% with page='explore', stories=stories %}

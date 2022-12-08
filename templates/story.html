@@ -25,14 +25,21 @@
                     </div>
                     <p>Note: Please do not include any personal information within your submission.</p>
                     <br>
-                    <label>Add Tags: </label>
-                    <select>
-                        <option>Tag 1</option>
-                        <option>Tag 2</option>
-                        <option>Other</option>
-                    </select>
+                    <section class="select-tags">
+                        <label>Add Tags: </label>
+                        <div id="line">
+                            <span id="tags"></span>
+                            <input id="tag-input" list="existing-tags" onchange="addTag(this, 'story')">
+                            <datalist id="existing-tags">
+                                {% for tag in tags %}
+                                <option value="{{tag}}"">
+                                    {% endfor %}
+                            </datalist>
+                            <button onclick=" addTag(this, 'story' )">Add</button>
+                        </div>
+                    </section>
                     <br><br>
-                    <input type="checkbox">
+                    <input type="checkbox" required>
                     <label>I agree to allow Astorya to store, modify, and post my submission for
                         its website.</label>
                     <div class="submit-story-container">
@@ -46,6 +53,11 @@
                     <div id="random-story{{i}}">
                         <h4 class="story-title">{{stories[i].title}}</h4>
                         {{stories[i].content | safe}}
+                        <div class="show-tags">
+                            {% for tag in stories[i].tags %}
+                            <span class="tag">{{tag}}</span>
+                            {% endfor %}
+                        </div>
                     </div>
                     {% endfor %}
                 </section>
@@ -56,6 +68,11 @@
                     <div id="story{{i}}">
                         <h4 class="story-title">{{stories[i].title}}</h4>
                         {{stories[i].content | safe}}
+                        <div class="show-tags">
+                            {% for tag in stories[i].tags %}
+                            <span class="tag">{{tag}}</span>
+                            {% endfor %}
+                        </div>
                     </div>
                     {% endfor %}
                 </section>
