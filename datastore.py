@@ -89,16 +89,36 @@ def save_tag(tag):
     entity["approved"] = False
     client.put(entity)
 
+def load_random_stories():
+    stories = load_all_stories()
+    random_stories = []
+
+    num_of_stories = 5
+    if len(stories) <= num_of_stories:
+        return stories
+
+    for i in range(num_of_stories):
+        index = random.randint(0, len(stories)-1)
+        while index in random_stories:
+            index = random.randint(0, len(stories)-1)
+        random_stories.append(index)
+    
+    for i in range(5):
+        random_stories[i] = stories[random_stories[i]]
+    
+    return random_stories
+
 def load_all_stories():
     """Load all of the stories."""
 
     client = _get_client()
     q = client.query(kind=_STORY_ENTITY)
-    # add filter here for only approved stories
+    q.add_filter('approved', '=', True)
 
     result = []
     for story in q.fetch():
-        result.append(story)
+        story_obj = _entity_to_story(story)
+        result.append(story_obj)
     return result
 
 def load_all_tags():
@@ -106,6 +126,8 @@ def load_all_tags():
 
     client = _get_client()
     q = client.query(kind=_TAGS_ENTITY)
+    q.add_filter('approved', '=', True)
+
 
     result = []
     for tag in q.fetch():

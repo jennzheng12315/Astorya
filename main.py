@@ -13,6 +13,7 @@ tags = ['tag1', 'tag2']
 @app.route("/index")
 @app.route("/index.html")
 def root():
+    random_stories = datastore.load_random_stories()
     return flask.render_template('index.html', page_title='Home', stories=random_stories)
 
 @app.route("/about")
@@ -23,12 +24,19 @@ def about():
 @app.route("/explore")
 @app.route("/explore.html")
 def explore():
+    stories = datastore.load_all_stories()
+    tags = datastore.load_all_tags()
     return flask.render_template('explore.html', page_title='Explore', stories=stories, tags=tags)
 
-@app.route("/tell-your-story")
-@app.route("/tell-your-story.html")
+@app.route("/tell-your-story", methods=['GET', 'POST'])
+@app.route("/tell-your-story.html", methods=['GET', 'POST'])
 def tell_your_story():
-    return flask.render_template('tell-your-story.html', page_title='Tell Your Story', tags=tags)
+    d = flask.request.values
+    status = ""
+    if "status" in d:
+        status = d['status']
+    print("STATUS:", status)
+    return flask.render_template('tell-your-story.html', page_title='Tell Your Story', tags=tags, status=status)
 
 @app.route("/submit", methods=['POST'])
 def submit():
@@ -39,7 +47,7 @@ def submit():
 
     datastore.save_story(content, title, tags, agreement)
 
-    return flask.redirect('/tell-your-story')
+    return flask.redirect("/tell-your-story?status=success")
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=8080, debug=True)

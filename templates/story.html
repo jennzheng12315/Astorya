@@ -3,52 +3,72 @@
 
 <body>
 
-    <section class="story-container">
+    <section class="story-container" id="story-container">
         <img src="/static/assets/rope-with-clothespin.png" alt="a clothespin on a rope">
 
         <div class="story-area">
             <div class="column arrow left-arrow">
                 {% if page == 'index' %}
-                <button onclick="onArrowClickIndex('left')"><i class="fa-solid fa-chevron-left fa-5x"></i></button>
+                <button onclick="onArrowClickIndex('left', {{stories|length}})"><i
+                        class="fa-solid fa-chevron-left fa-5x"></i></button>
                 {% elif page == 'explore' %}
                 <button onclick="onArrowClickExplore('left')"><i class="fa-solid fa-chevron-left fa-5x"></i></button>
                 {% endif %}
             </div>
             <div class="column story-page">
                 {% if page == 'write' %}
-                <form method="post" action="/submit">
-                    <input type="hidden" id="input-content" name="content" value="">
-                    <input type="hidden" id="input-tags" name="tags" value="">
-                    <label>Title: </label>
-                    <input type="text" id="input-title" name="title" class="title-input">
-                    <!-- Quill.js editor -->
-                    <div id="editor">
-                        <p><br></p>
+                <div id="write-story-form">
+                    {% if status == 'success' %}
+                    <div class="submit-successful">
+                        <h2>Story Submitted! <i class="fa-solid fa-check"></i></h2>
+                        <br>
+                        <button class="peach-button read-more-button" onclick="location.href='/explore'">
+                            <i class="fa-solid fa-book-open"></i>
+                            Read More!
+                        </button>
                     </div>
-                    <p>Note: Please do not include any personal information within your submission.</p>
-                    <br>
-                    <section class="select-tags">
-                        <label>Add Tags: </label>
-                        <div id="line">
-                            <span id="tags"></span>
-                            <input id="tag-input" list="existing-tags" onchange="addTag(this, 'story')">
-                            <datalist id="existing-tags">
-                                {% for tag in tags %}
-                                <option value="{{tag}}">
-                                    {% endfor %}
-                            </datalist>
-                            <button onclick=" addTag(this, 'story' )">Add</button>
+                    {% else %}
+                    <form method="post" action="/submit">
+                        <input type="hidden" id="input-content" name="content" value="">
+                        <input type="hidden" id="input-tags" name="tags" value="">
+                        <label>Title: </label>
+                        <input type="text" id="input-title" name="title" class="title-input" value="">
+                        <!-- Quill.js editor -->
+                        <div id="editor">
+                            <p><br></p>
                         </div>
-                    </section>
-                    <br><br>
-                    <input type="checkbox" name="agreement" required>
-                    <label>I agree to allow Astorya to store, modify, and post my submission for
-                        its website.</label>
-                    <div class="submit-story-container">
-                        <button type="submit" class="green-button submit-story-button" onclick="handleSubmit()">Submit
-                            Story</button>
-                    </div>
-                </form>
+                        <p>Note: Please do not include any personal information within your submission.</p>
+                        <br>
+                        <section class="select-tags">
+                            <label>Add Tags: </label>
+                            <div id="line">
+                                <span id="tags"></span>
+                                <input id="tag-input" list="existing-tags" onchange="addTag(this, 'story')">
+                                <datalist id="existing-tags">
+                                    {% for tag in tags %}
+                                    <option value="{{tag}}">
+                                        {% endfor %}
+                                </datalist>
+                                <button class="small-button" onclick=" addTag(this, 'story')">Add</button>
+                            </div>
+                        </section>
+                        <br><br>
+                        <input type="checkbox" name="agreement" required>
+                        <label>By checking this box, I agree to allow Astorya to store, modify, and post my submission
+                            on
+                            its website. I understand that the project owner reserves the right to remove any
+                            submissions
+                            that are
+                            deemed
+                            harmful or offensive. </label>
+                        <div class="submit-story-container">
+                            <button type="submit" class="green-button submit-story-button"
+                                onclick="handleSubmit()">Submit
+                                Story</button>
+                        </div>
+                    </form>
+                    {% endif %}
+                </div>
 
                 {% elif page == 'index' %}
                 <section class="random-stories">
@@ -58,7 +78,9 @@
                         {{stories[i].content | safe}}
                         <div class="show-tags">
                             {% for tag in stories[i].tags %}
-                            <span class="tag">{{tag}}</span>
+                            {% if tag != "" %}
+                            <span class="story-tag">{{tag}}</span>
+                            {% endif %}
                             {% endfor %}
                         </div>
                     </div>
@@ -73,7 +95,9 @@
                         {{stories[i].content | safe}}
                         <div class="show-tags">
                             {% for tag in stories[i].tags %}
-                            <span class="tag">{{tag}}</span>
+                            {% if tag != "" %}
+                            <span class="story-tag">{{tag}}</span>
+                            {% endif %}
                             {% endfor %}
                         </div>
                     </div>
@@ -84,7 +108,8 @@
             </div>
             <div class="column arrow right-arrow">
                 {% if page == 'index' %}
-                <button onclick="onArrowClickIndex('right')"><i class="fa-solid fa-chevron-right fa-5x"></i></button>
+                <button onclick="onArrowClickIndex('right', {{stories|length}})"><i
+                        class="fa-solid fa-chevron-right fa-5x"></i></button>
                 {% elif page == 'explore' %}
                 <button onclick="onArrowClickExplore('right')"><i class="fa-solid fa-chevron-right fa-5x"></i></button>
                 {% endif %}

@@ -7,6 +7,9 @@
 }
 
 /* ---------- BASE CSS ---------- */
+html {
+    scroll-behavior: smooth;
+}
 
 body {
     /* background: rgb(4,20,49); */
@@ -51,6 +54,30 @@ img {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.bottom-of-page {
+    position: absolute;
+    bottom: 0;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.down-button {
+    background-color: transparent;
+    margin-bottom: 20px;
+    transform: translateX(-2em);
+}
+
+.small-button {
+    background-color: var(--peach);
+    font-weight: bold;
+    font-size: 1rem;
+    /* font-size: 1.5vmax; */
+    border-radius: 10px;
+    padding: 5px 10px 5px 10px;
+}
+
 a:hover {
     text-decoration: underline;
 }
@@ -87,7 +114,8 @@ section {
 }
 
 .fa-circle-pause,
-.fa-circle-play {
+.fa-circle-play,
+.fa-chevron-down {
     color: var(--light-gray-50);
 }
 
@@ -224,8 +252,8 @@ section {
 }
 
 .story-title {
-    font-size: 2.5rem;
-    font-size: 2vmax;
+    font-size: 3.5rem;
+    font-size: 3vmax;
 }
 
 .column {
@@ -264,10 +292,11 @@ section {
 
 /* ---------- EXPLORE CSS ---------- */
 .explore-top {
-    margin-left: var(--outer-spacing);
+    /* margin-left: var(--outer-spacing); */
     margin-top: auto;
     margin-bottom: auto;
     font-size: 5rem;
+    text-align: center;
 }
 
 .typed {
@@ -283,6 +312,7 @@ section {
 
 .filter label {
     margin-top: 20px;
+    margin-right: 10px;
 }
 
 .previews {
@@ -306,6 +336,12 @@ section {
     margin: 10px;
 }
 
+#page-select {
+    padding: 2px;
+    border-radius: 10px;
+    background-color: var(--peach);
+}
+
 /* ---------- TELL YOUR STORY CSS ---------- */
 .tell-story-top {
     margin-top: auto;
@@ -315,16 +351,16 @@ section {
 }
 
 .tell-story-top h2 {
-    font-size: 2.5rem;
-    font-size: 2vmax;
+    font-size: 2rem;
+    /* font-size: 2vmax; */
     font-weight: 100;
     margin-block-end: 0.5rem;
     color: lightgrey
 }
 
-.tell-story-top h5 {
+#ideas {
     font-size: 1.5rem;
-    font-size: 1.5vmax;
+    /* font-size: 1.5vmax; */
     font-weight: 100;
     margin-block-end: 0.5rem;
 }
@@ -336,6 +372,14 @@ section {
 .select-tags label {
     margin-top: 20px;
     margin-right: 10px;
+}
+
+.fa-check {
+    color: var(--green);
+}
+
+.submit-successful {
+    text-align: center;
 }
 
 /* ---------- ABOUT CSS ---------- */
@@ -362,6 +406,34 @@ section {
     margin: 10px;
 }
 
+blockquote {
+    background: #f9f9f9;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C" "\201D" "\2018" "\2019";
+}
+
+blockquote:before {
+    color: #ccc;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+}
+
+pre {
+    background-color: #23241f;
+    color: #f8f8f2;
+    overflow: visible;
+    white-space: pre-wrap;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
 /* ---------- TAGS ----------*/
 .tag {
     background-color: lightgray;
@@ -369,6 +441,13 @@ section {
     margin: 5px;
     padding: 5px;
     cursor: pointer
+}
+
+.story-tag {
+    background-color: lightgray;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px;
 }
 
 #line {

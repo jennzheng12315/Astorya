@@ -6,13 +6,15 @@
 
 <section class="explore-top">
     <h1>Stories for <span class="typed">You</span></h1>
+    <button class="down-button bottom-of-page" onClick="document.getElementById('filter').scrollIntoView();"><i
+            class="fa-solid fa-chevron-down fa-4x"></i></button>
 </section>
 
 {% endblock %}
 
 {% block content %}
 
-<section class="filter">
+<section class="filter" id="filter">
     <label>Filter: </label>
     <div id="line">
         <span id="tags"></span>
@@ -22,7 +24,7 @@
             <option value="{{tag}}">
                 {% endfor %}
         </datalist>
-        <button onclick=" addTag(this, 'explore')">Add</button>
+        <button class="small-button" onclick=" addTag(this, 'explore')">Add</button>
     </div>
 </section>
 
@@ -40,7 +42,7 @@
     <button class="page-arrow" id="page-arrow-left" onclick="onClickPageArrow('left')"><i
             class="fa-solid fa-chevron-left"></i></button>
     <select id="page-select" onchange="onPageSelected()">
-        {% for i in range((stories|length / 10)|round|int) %}
+        {% for i in range((stories|length / 10)|round(0, 'ceil')|int) %}
         <option value="{{i+1}}">Page {{i+1}}</option>
         {% endfor %}
     </select>

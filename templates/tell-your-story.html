@@ -6,16 +6,20 @@
 
 <section class="tell-story-top">
     <h1>Tell Your Story</h1>
-    <h2>What would you like to share?</h2>
-    <br><br>
-    <h5 id="ideas">Need some ideas? <button onclick="ideasClick()"><i class="fa-solid fa-shuffle"></i></button></h5>
+    <!-- <h2>What would you like to share?</h2> -->
+    <!-- <div class="bottom-of-page text-center"> -->
+    <div class="random-prompts"><span id="ideas">Need some ideas?</span> <button class="small-button"
+            onclick="ideasClick()"><i class="fa-solid fa-shuffle"></i></button></div>
+    <button class="down-button bottom-of-page" onClick="document.getElementById('story-container').scrollIntoView();"><i
+            class="fa-solid fa-chevron-down fa-4x"></i></button>
+    <!-- </div> -->
 </section>
 
 {% endblock %}
 
 {% block content %}
 
-{% with page='write' %}
+{% with page='write', status=status%}
 {% include 'story.html' %}
 {% endwith %}
 
