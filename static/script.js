@@ -150,23 +150,34 @@ const setUpQuill = function SetupQuill() {
 // -----------------------------------------------
 
 function onIndexLoad(length) {
+    windowAdjust();
     showRandomStory(randomStory, length);
     handlePlayPause(localStorage.getItem("animationMode"));
 }
 
-function onExploreLoad(length) {
+function onExploreLoad(length, filters) {
     totalStories = length;
     showStory(story);
     showPreview();
     handlePlayPause(localStorage.getItem("animationMode"));
     selected_tags = [];
+    for (let i = 0; i < filters.length; i++) {
+        let input = document.createElement("input");
+        input.type = "text";
+        input.value = filters[i];
+        addTag(input);
+    }
 }
 
 function onTellStoryLoad() {
 
+    let input = document.getElementById('input-title');
+    input.value = "";
+
     let el = document.getElementById('editor');
     if (typeof (el) != 'undefined' && el != null) {
         setUpQuill();
+        formEnter();
     }
     handlePlayPause(localStorage.getItem("animationMode"));
     selected_tags = []
@@ -320,6 +331,7 @@ function checkPageArrows() {
 function getHTML() {
     // document.getElementById('input-content').value = formatHTML(quill.root.innerHTML);
     // console.log(quill.root.innerHTML);
+    console.log(textEditorContent);
     document.getElementById('input-content').value = textEditorContent;
 }
 
@@ -340,7 +352,7 @@ function handleSubmit() {
     checkTitle()
 }
 
-function addTag(tag, page) {
+function addTag(tag) {
     if (tag.value == undefined) return;
     let tags = document.getElementById("tags");
     let span = document.createElement("span");
@@ -349,11 +361,7 @@ function addTag(tag, page) {
     span.textContent = tag.value;
     tag.value = "";
 
-    if (page == 'story') {
-        span.setAttribute("onclick", "this.remove(); removeTag(this.textContent, 'story')");
-    } else {
-        span.setAttribute("onclick", "this.remove(); removeTag(this.textContent, 'explore')");
-    }
+    span.setAttribute("onclick", "this.remove(); removeTag(this.textContent)");
 
     if (val != "") {
         if (!selected_tags.includes(val)) {
@@ -367,10 +375,38 @@ function addTag(tag, page) {
 }
 
 
-function removeTag(tag, page) {
-    // if (page != 'story') return;
+function removeTag(tag) {
     let index = selected_tags.indexOf(tag)
     if (index > -1) {
         selected_tags.splice(index, 1);
     }
+}
+
+function windowAdjust() {
+    let width = window.innerWidth;
+    if (width <= 768) {
+        document.getElementById("mobile-version").style.display = 'block';
+        document.getElementById("desktop-version").style.display = 'none';
+    } else {
+        document.getElementById("mobile-version").style.display = 'none';
+        document.getElementById("desktop-version").style.display = 'float';
+    }
+}
+
+function onFilterSubmit() {
+    if (selected_tags.length > 0) {
+        location.href = '/explore?filters=' + selected_tags.toString();
+    } else {
+        location.href = '/explore';
+    }
+}
+
+function formEnter() {
+    document.getElementById("story-form").addEventListener("keypress", function (e) {
+        if (e.key == "Enter") {
+            el = document.getElementById("tag-input");
+            addTag(el)
+            handleSubmit();
+        }
+    });
 }

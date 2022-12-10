@@ -24,18 +24,40 @@ def about():
 @app.route("/explore")
 @app.route("/explore.html")
 def explore():
-    stories = datastore.load_all_stories()
+    all_stories = datastore.load_all_stories()
     tags = datastore.load_all_tags()
-    return flask.render_template('explore.html', page_title='Explore', stories=stories, tags=tags)
+    stories = []
+
+    # handle filters if there are any
+    d = flask.request.values
+    filters = []
+    if "filters" in d:
+        filters = d['filters'].split(',')
+        print(filters)
+
+    if len(filters) > 0:
+        for story in all_stories:
+            add = True
+            for filter in filters:
+                if filter not in story.tags:
+                    add = False
+            if add == True:
+                stories.append(story)
+    else:
+        stories = all_stories
+
+    return flask.render_template('explore.html', page_title='Explore', stories=stories, tags=tags, filters=filters)
 
 @app.route("/tell-your-story", methods=['GET', 'POST'])
 @app.route("/tell-your-story.html", methods=['GET', 'POST'])
 def tell_your_story():
+    tags = datastore.load_all_tags()
+
     d = flask.request.values
+    # status = submit will show successful submit message
     status = ""
     if "status" in d:
         status = d['status']
-    print("STATUS:", status)
     return flask.render_template('tell-your-story.html', page_title='Tell Your Story', tags=tags, status=status)
 
 @app.route("/submit", methods=['POST'])

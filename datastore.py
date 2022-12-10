@@ -30,6 +30,7 @@ def _load_entity(client, entity_type, entity_id):
 
 def _entity_to_story(entity):
     """Translate the entity to a regular old Python object."""
+    all_tags = load_all_tags()
 
     id = entity['id']
     content = entity['content']
@@ -42,7 +43,8 @@ def _entity_to_story(entity):
     arr = tags.split(',')
     temp = []
     for x in arr:
-        temp.append(x)
+        if x in all_tags:
+            temp.append(x)
     tags = temp
 
     story = objects.Story(id, content, title, tags, dayToDelete, approved, agreement)
@@ -64,7 +66,7 @@ def save_story(content, title, tags, agreement, dayToDelete=None):
 
     client = _get_client()
     key = _load_key(client, _STORY_ENTITY)
-    entity = datastore.Entity(key)
+    entity = datastore.Entity(key, exclude_from_indexes=["content"])
     entity['id'] = entity.key.id
     entity['content'] = content
     entity['title'] = title
@@ -75,10 +77,10 @@ def save_story(content, title, tags, agreement, dayToDelete=None):
 
     client.put(entity)
 
-    all_tags = load_all_tags()
+    all_tags = load_all_tags(False)
     tags_arr = tags.split(',')
     for tag in tags_arr:
-        if tag not in all_tags:
+        if tag != '' and tag not in all_tags:
             save_tag(tag)
 
 def save_tag(tag):
@@ -121,12 +123,13 @@ def load_all_stories():
         result.append(story_obj)
     return result
 
-def load_all_tags():
+def load_all_tags(filter=True):
     """Load all of the tags"""
 
     client = _get_client()
     q = client.query(kind=_TAGS_ENTITY)
-    q.add_filter('approved', '=', True)
+    if filter == True:
+        q.add_filter('approved', '=', True)
 
 
     result = []

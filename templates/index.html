@@ -4,8 +4,8 @@
 
 {% block title %}
 
-<section class="home-top">
-    <div class="home-text">
+<section class="home-top-desktop" id="desktop-version">
+    <div class="home-text-desktop">
         <h2>Everyone has a story</h2>
         <h1>What's Yours?</h1>
         <button class="peach-button read-todays-stories"
@@ -15,9 +15,26 @@
         </button>
     </div>
 
-    <div class="home-image">
+    <div class="home-image-desktop">
         <img id="writing-clipart" src="/static/assets/cropped-writing-clipart.png" alt="clipart of two people writing">
     </div>
+</section>
+
+<section class="home-top-mobile" id="mobile-version">
+    <div class="home-text-mobile">
+        <h2>Everyone has a story</h2>
+        <h1>What's Yours?</h1>
+    </div>
+
+    <div class="home-image-mobile">
+        <img id="writing-clipart" src="/static/assets/writing-clipart.png" alt="clipart of two people writing">
+    </div>
+
+    <button class="peach-button read-todays-stories"
+        onClick="document.getElementById('todays-stories-info').scrollIntoView();">
+        <i class="fa-solid fa-angles-down"></i>
+        Read Today's Stories
+    </button>
 </section>
 
 {% endblock %}
