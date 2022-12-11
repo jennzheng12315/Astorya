@@ -4,10 +4,11 @@
     <div class="story-area">
         <div class="column arrow left-arrow">
             {% if page == 'index' %}
-            <button onclick="onArrowClickIndex('left', {{stories|length}})"><i
+            <button aria-label="Left arrow for next story" onclick="onArrowClickIndex('left', {{stories|length}})"><i
                     class="fa-solid fa-chevron-left fa-5x"></i></button>
             {% elif page == 'explore' %}
-            <button onclick="onArrowClickExplore('left')"><i class="fa-solid fa-chevron-left fa-5x"></i></button>
+            <button aria-label="Left arrow for next story" onclick="onArrowClickExplore('left')"><i
+                    class="fa-solid fa-chevron-left fa-5x"></i></button>
             {% endif %}
         </div>
         <div class="column story-page">
@@ -26,7 +27,7 @@
                 <form method="post" action="/submit" id="story-form">
                     <input type="hidden" id="input-content" name="content" value="">
                     <input type="hidden" id="input-tags" name="tags" value="">
-                    <label>Title: </label>
+                    <label for="input-title">Title: </label>
                     <input type="text" id="input-title" name="title" class="title-input" value="">
                     <!-- Quill.js editor -->
                     <div id="editor">
@@ -35,7 +36,7 @@
                     <p>Note: Please do not include any personal information within your submission.</p>
                     <br>
                     <section class="select-tags">
-                        <label>Add Tags: </label>
+                        <label for="tag-input">Add Tags: </label>
                         <div id="line">
                             <span id="tags"></span>
                             <input id="tag-input" list="existing-tags" onchange="addTag(this)">
@@ -48,15 +49,16 @@
                         </div>
                     </section>
                     <br><br>
-                    <input type="checkbox" name="agreement" required>
-                    <label>By checking this box, I agree to allow Astorya to store, modify, and post my submission
+                    <input type="checkbox" id="checkbox" name="agreement" required>
+                    <label for="checkbox">By checking this box, I agree to allow Astorya to store, modify, and post my
+                        submission
                         on
                         its website. I understand that the project owner reserves the right to remove any
                         submissions
                         that are
                         deemed
                         harmful or offensive. </label>
-                    <div class="submit-story-container">
+                    <div class=" submit-story-container">
                         <button type="submit" class="green-button submit-story-button" onclick="handleSubmit()">Submit
                             Story</button>
                     </div>
@@ -109,10 +111,12 @@
         </div>
         <div class="column arrow right-arrow">
             {% if page == 'index' %}
-            <button onclick="onArrowClickIndex('right', {{stories|length}})"><i
+            <button aria-label="right arrow for previous story"
+                onclick="onArrowClickIndex('right', {{stories|length}})"><i
                     class="fa-solid fa-chevron-right fa-5x"></i></button>
             {% elif page == 'explore' %}
-            <button onclick="onArrowClickExplore('right')"><i class="fa-solid fa-chevron-right fa-5x"></i></button>
+            <button aria-label="right arrow for previous story" onclick="onArrowClickExplore('right')"><i
+                    class="fa-solid fa-chevron-right fa-5x"></i></button>
             {% endif %}
         </div>
     </div>

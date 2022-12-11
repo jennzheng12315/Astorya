@@ -180,28 +180,28 @@ section {
 
 }
 
-.home-text-desktop h1 {
+.home-text-desktop h2 {
     font-size: 5rem;
     font-size: 7vmax;
     margin-block-start: 0rem;
     margin-block-end: 1rem;
 }
 
-.home-text-desktop h2 {
+.home-text-desktop h1 {
     font-size: 2.5rem;
     font-size: 2vmax;
     font-weight: 100;
     margin-block-end: 0.5rem;
 }
 
-.home-text-mobile h1 {
+.home-text-mobile h2 {
     font-size: 5rem;
     font-size: 7vmax;
     margin-block-start: 0rem;
     margin-block-end: 1rem;
 }
 
-.home-text-mobile h2 {
+.home-text-mobile h1 {
     font-size: 2.5rem;
     font-size: 2vmax;
     font-weight: 100;

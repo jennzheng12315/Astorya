@@ -130,10 +130,14 @@ const setUpQuill = function SetupQuill() {
     const quill = new Quill("#editor", {
         modules: {
             toolbar: toolbarOptions,
+            keyboard: {
+                bindings: {
+                    tab: false
+                }
+            }
         },
         theme: "snow"
     });
-    // console.log(Quill.imports);
     quill.on("text-change", function (delta, source) {
         // console.log(formatHtml(
         //     quill.root.innerHTML

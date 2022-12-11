@@ -6,7 +6,10 @@
 
 <section class="explore-top">
     <h1>Stories for <span class="typed">You</span></h1>
-    <button class="down-button bottom-of-page" onClick="document.getElementById('filter').scrollIntoView();"><i
+    <h2 style="display: none;"></h2>
+    <h3 style="display: none;"></h3>
+    <button aria-label="Scroll down to content" class="down-button bottom-of-page"
+        onClick="document.getElementById('filter').scrollIntoView();"><i
             class="fa-solid fa-chevron-down fa-4x"></i></button>
 </section>
 
@@ -15,10 +18,11 @@
 {% block content %}
 
 <section class="filter" id="filter">
-    <label>Add Filters: </label>
+
     <div id="line">
-        <span id="tags"></span>
+
         <div>
+            <label>Add Filters: </label>
             <input id="tag-input" list="existing-tags" name="explore-tags" id="explore-tags" onchange="addTag(this)">
             <datalist id="existing-tags">
                 {% for tag in tags %}
@@ -28,6 +32,8 @@
             <button class="small-button" onclick=" addTag(this)">Add</button>
             <button class="filter-button" onclick="onFilterSubmit()">Filter</button>
         </div>
+        <br>
+        <span id="tags"></span>
     </div>
 </section>
 
