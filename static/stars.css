@@ -1,0 +1,23 @@
+.star {
+    --twinkle-duration: "";
+    --twinkle-delay: "";
+    position: absolute;
+    background-color: whitesmoke;
+    border-radius: 50%;
+    z-index: -1;
+    animation: twinkle infinite alternate;
+    animation-duration: var(--twinkle-duration);
+    animation-delay: var(--twinkle-delay);
+    animation-play-state: running;
+}
+
+@keyframes twinkle {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.5);
+        box-shadow: 0 0 5px 0.5px rgba(150, 150, 150, 0.6);
+    }
+}

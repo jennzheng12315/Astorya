@@ -156,15 +156,22 @@ const setUpQuill = function SetupQuill() {
 function onIndexLoad(length) {
     windowAdjust();
     showRandomStory(randomStory, length);
-    handlePlayPause(localStorage.getItem("animationMode"));
+    if (localStorage.getItem("animationMode") != null) {
+        handlePlayPause(localStorage.getItem("animationMode"));
+    } else {
+        handlePlayPause("play");
+    }
 }
 
 function onExploreLoad(length, filters) {
     totalStories = length;
     showStory(story);
     showPreview();
-    handlePlayPause(localStorage.getItem("animationMode"));
-    selected_tags = [];
+    if (localStorage.getItem("animationMode") != null) {
+        handlePlayPause(localStorage.getItem("animationMode"));
+    } else {
+        handlePlayPause("play");
+    } selected_tags = [];
     for (let i = 0; i < filters.length; i++) {
         let input = document.createElement("input");
         input.type = "text";
@@ -183,27 +190,48 @@ function onTellStoryLoad() {
         setUpQuill();
         formEnter();
     }
-    handlePlayPause(localStorage.getItem("animationMode"));
-    selected_tags = []
+    if (localStorage.getItem("animationMode") != null) {
+        handlePlayPause(localStorage.getItem("animationMode"));
+    } else {
+        handlePlayPause("play");
+    }
+    selected_tags = [];
 }
 
 function onAboutLoad() {
-    handlePlayPause(localStorage.getItem("animationMode"));
+    if (localStorage.getItem("animationMode") != null) {
+        handlePlayPause(localStorage.getItem("animationMode"));
+    } else {
+        handlePlayPause("play");
+    }
 }
 
 function handlePlayPause(mode) {
-    if (document.querySelector('#play') == null || document.querySelector('#pause') == null) {
+    let play = document.querySelector('#play');
+    let pause = document.querySelector('#pause');
+    let stars = document.querySelectorAll('.star');
+
+
+    if (play == null || pause == null) {
         return;
     }
 
     localStorage.setItem("animationMode", mode);
 
     if (mode == "play") {
-        document.querySelector('#play').style.display = 'none';
-        document.querySelector('#pause').style.display = 'block';
+        play.style.display = 'none';
+        pause.style.display = 'block';
+        stars.forEach(star => {
+            star.style.animationPlayState = "running";
+        });
+
+
     } else {
-        document.querySelector('#play').style.display = 'block';
-        document.querySelector('#pause').style.display = 'none';
+        play.style.display = 'block';
+        pause.style.display = 'none';
+        stars.forEach(star => {
+            star.style.animationPlayState = "paused";
+        });
     }
 
 }

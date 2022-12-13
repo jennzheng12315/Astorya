@@ -5,6 +5,7 @@ app = flask.Flask(__name__)
 
 manager = datastore.StoryManager()
 stories = manager.init_data()
+all_stories = manager.init_data()
 random_stories = manager.random_stories(stories)
 tags = ['tag1', 'tag2']
 
@@ -13,6 +14,7 @@ tags = ['tag1', 'tag2']
 @app.route("/index")
 @app.route("/index.html")
 def root():
+    # UNCOMMENT
     random_stories = datastore.load_random_stories()
     return flask.render_template('index.html', page_title='Home', stories=random_stories)
 
@@ -24,6 +26,7 @@ def about():
 @app.route("/explore")
 @app.route("/explore.html")
 def explore():
+    # UNCOMMENT
     all_stories = datastore.load_all_stories()
     tags = datastore.load_all_tags()
     stories = []
@@ -51,6 +54,7 @@ def explore():
 @app.route("/tell-your-story", methods=['GET', 'POST'])
 @app.route("/tell-your-story.html", methods=['GET', 'POST'])
 def tell_your_story():
+    # UNCOMMENT
     tags = datastore.load_all_tags()
 
     d = flask.request.values
